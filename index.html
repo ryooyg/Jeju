@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>제주오름</title>
+    <style>
+        .map {
+        width:  1600px;
+        height: 900px;
+      }
+      .map {
+        background: #f8f4f0;
+      }
+    </style>
+    
+    <style type="text/css">
+        #wrap .buttons { position:absolute;top:0;left:0;z-index:1000;padding:5px; }
+        #wrap .buttons .control-btn { margin:0 5px 5px 0; }
+    </style>
+
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7yqgqom06m"></script>
+    <script src="./js/jquery/jquery-1.9.1.js"></script>
+</head>
+
+<body>
+
+  <style type="text/css">
+      #wrap .buttons { position:absolute;top:10;left:10;z-index:1000;padding:10px; }
+      #wrap .buttons .control-btn { margin:0 5px 5px 0; }
+  </style>
+  <div id="wrap" class="section">
+        <div id="map" class="map"></div>
+            <div class="buttons">
+                <input id="NORMAL" type="button" value="일반지도" class="control-btn control-on" />
+                <input id="TERRAIN" type="button" value="지형도" class="control-btn" />
+                <input id="SATELLITE" type="button" value="위성지도" class="control-btn" />
+                <input id="HYBRID" type="button" value="겹쳐보기" class="control-btn" />
+                <!-- <input id="bicycle" type="button" value="자전거" class="control-btn" /> -->
+                <input id="osm_map" type="button" value="osm" class="control-btn" />
+                <!-- <input id="label" type="button" value="라벨" class="control-btn" /> -->
+            </div>
+        </div> 
+        <div>
+          <tr>
+             <td><label><input type="checkbox" id="jejuland"  >지 역</label></td>
+             <td><label><input type="checkbox" id="jejusea"   >앞바다</label></td>
+             <td><label><input type="checkbox" id="jejufarsea">먼바다</label></td>
+             <td><label><input type="checkbox" id="jejuoleum">오름</label></td>
+             <td><label><input type="checkbox" id="jejuaws">AWS_ASOS</label></td>
+             <td><label><input type="checkbox" id="jejuhiking">등산로</label></td>
+          </tr>
+       </div>       
+   </div>
+
+   <script type="module" src="main.js"></script>
+
+</body>
+</html>
