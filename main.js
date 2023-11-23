@@ -111,7 +111,7 @@ var openStreetMapType = new naver.maps.ImageMapType({
 
 if (myindex==1 ) {
     zoomindex=9;
-    jejucenter = naver.maps.LatLng(33.3500, 126.5706);
+    jejucenter = naver.maps.LatLng(33.4500, 126.5706);
     // window.alert('The window is now 700px or under');    
 } else {
     zoomindex=10;
