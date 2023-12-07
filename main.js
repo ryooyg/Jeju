@@ -1088,7 +1088,7 @@ function startjejucctvDataLayer(json) {
           <video class="video-js" width="680" height="480" controls preload="auto" data-setup={"loop": "true", "autoplay": true }>\
                 <source src="'+vodUrl+'" type="video/mp4" /> \
           </video> </p>'+'\
-          <p><a href="r1.html?vodUrl='+vodUrl+'" target="_blank">채널번호 : '+channel+'</a></p></div>';
+          <p><a href="r1.html?vodUrl='+vodUrl+'" target="_blank">채널번호 : '+channel+'</a></p><p>경찰청(UTIC)제공</p></div>';
 
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,            
