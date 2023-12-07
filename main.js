@@ -5,34 +5,57 @@ const sate = document.getElementById('SATELLITE');
 const hybr = document.getElementById('HYBRID');
 const osm_map = document.getElementById('osm_map');
 
-const jejuland_check = document.getElementById('jejuland');
-const jejusea_check = document.getElementById('jejusea');
-const jejufarsea_check = document.getElementById('jejufarsea');
 const jejuoleum_check = document.getElementById('jejuoleum');
-const jejuaws_check = document.getElementById('jejuaws');
 const jejuhiking_check = document.getElementById('jejuhiking');
 const jejuolle_check = document.getElementById('jeju_olle_trail');
 const jejuhalla_check = document.getElementById('jeju_halla_trail');
 const jejuzpt_check = document.getElementById('jeju_zpt');
 
+const jejucafe_check = document.getElementById('jeju_cafe');
+const jejurest_check = document.getElementById('jeju_rest');
+const seogwipocafe_check = document.getElementById('seogwipo_cafe');
+const seogwiporest_check = document.getElementById('seogwipo_rest');
+const jejuheajang_check = document.getElementById('jeju_heajang');
+
+const jejucctv_check = document.getElementById('jeju_cctv');
+
 var bicycleLayer = new naver.maps.BicycleLayer();
 
-var jejuland;
-var jejusea;
-var jejufarsea;
-var jejuoleum;
 var osm;
-var markerList=[];
-var circleList=[];
-var infoWindowList=[];
 
-var awsmarkerList=[];
-var awsinfoWindowList=[];
+var jejuoleum;
+var oleummarkerList=[];
+var oleumcircleList=[];
+var oleuminfoWindowList=[];
 
 var jejuhiking;
 var jejuhalla;
 var jejuolle;
 var jejuzpt;
+
+var jejucafe;
+var jejucafemarkerList=[];
+var jejucafeinfoWindowList=[];
+
+var jejurest;
+var jejurestmarkerList=[];
+var jejurestinfoWindowList=[];
+
+var seogwipocafe;
+var seogwipocafemarkerList=[];
+var seogwipocafeinfoWindowList=[];
+
+var seogwiporest;
+var seogwiporestmarkerList=[];
+var seogwiporestinfoWindowList=[];
+
+var jejuheajang;
+var jejuheajangmarkerList=[];
+var jejuheajanginfoWindowList=[];
+
+var jejucctv;
+var jejucctvmarkerList=[];
+var jejucctvinfoWindowList=[];
 
 var zoomindex=10;
 var jejucenter=naver.maps.LatLng(33.5507, 126.5706);
@@ -140,177 +163,14 @@ osm_map.addEventListener('click', () => {
     map.setMapTypeId("osm");    
 });
 
-jejuland_check.addEventListener('change', function () {
-    
-    if (this.checked) {
-        var url_path='./geojson/jeju_land.geojson';
-
-        $.ajax({
-            url: url_path,
-            dataType: 'json',
-            success: startlandDataLayer            
-        });
-    } else { 
-        map.data.removeGeoJson(jejuland);
-    }
-});
 
 var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000;font-size:14px;pointer-events:none;display:none;"></div>');
 tooltip.appendTo(map.getPanes().floatPane);
 
-function startlandDataLayer(geojson) {    
-
-    map.data.setStyle(function(feature) {
-        var styleOptions = {
-            fillColor: '#ff0000',
-            fillOpacity: 0.0001,
-            strokeColor: '#ff0000',
-            strokeWeight: 2,
-            strokeOpacity: 0.4
-        };
-
-        if (feature.getProperty('focus')) {
-            styleOptions.fillOpacity = 0.6;
-            styleOptions.fillColor = '#0f0';
-            styleOptions.strokeColor = '#0f0';
-            styleOptions.strokeWeight = 4;
-            styleOptions.strokeOpacity = 1;
-        }
-
-        return styleOptions;
-    });
-
-    jejuland = geojson;
-    map.data.addGeoJson(geojson);
-
-    map.data.addListener('click', function(e) {
-        var feature = e.feature;
-
-        if (feature.getProperty('focus') !== true) {
-            feature.setProperty('focus', true);
-        } else {
-            feature.setProperty('focus', false);
-        }
-    });
-
-    map.data.addListener('mouseover', function(e) {
-        var feature = e.feature,
-            regionName = feature.getProperty('Name');
-
-        tooltip.css({
-            display: '',
-            left: e.offset.x,
-            top: e.offset.y
-        }).text(regionName);
-
-        map.data.overrideStyle(feature, {
-            fillOpacity: 0.6,
-            strokeWeight: 4,
-            strokeOpacity: 1
-        });
-    });
-
-    map.data.addListener('mouseout', function(e) {
-        tooltip.hide().empty();
-        map.data.revertStyle();
-    });
-
-}
-
-jejusea_check.addEventListener('change', function () {
-    if (this.checked) {
-        var url_path = './geojson/jeju_sea.geojson';
-
-        $.ajax({
-            url: url_path,
-            dataType: 'json',
-            success: startseaDataLayer            
-        });
-    } else { 
-        map.data.removeGeoJson(jejusea);
-    }
-});
-
-function startseaDataLayer(geojson) { 
-    map.data.setStyle(function(feature) {
-        var styleOptions = {
-            fillColor: '#ff0000',
-            fillOpacity: 0.0001,
-            strokeColor: '#ff0000',
-            strokeWeight: 2,
-            strokeOpacity: 0.4
-        };
-
-        if (feature.getProperty('focus')) {
-            styleOptions.fillOpacity = 0.6;
-            styleOptions.fillColor = '#0f0';
-            styleOptions.strokeColor = '#0f0';
-            styleOptions.strokeWeight = 4;
-            styleOptions.strokeOpacity = 1;
-        }
-
-        return styleOptions;
-    });
-
-    jejusea = geojson;
-    map.data.addGeoJson(geojson);
-
-    map.data.addListener('click', function(e) {
-        var feature = e.feature;
-
-        if (feature.getProperty('focus') !== true) {
-            feature.setProperty('focus', true);
-        } else {
-            feature.setProperty('focus', false);
-        }
-    });
-
-    map.data.addListener('mouseover', function(e) {
-        var feature = e.feature,
-            regionName = feature.getProperty('Name');
-
-        tooltip.css({
-            display: '',
-            left: e.offset.x,
-            top: e.offset.y
-        }).text(regionName);
-
-        map.data.overrideStyle(feature, {
-            fillOpacity: 0.6,
-            strokeWeight: 4,
-            strokeOpacity: 1
-        });
-    });
-
-    map.data.addListener('mouseout', function(e) {
-        tooltip.hide().empty();
-        map.data.revertStyle();
-    });
-
-}
-
-jejufarsea_check.addEventListener('change', function () {
-    if (this.checked) {
-        var url_path ='./geojson/jeju_farsea.geojson';
-        $.ajax({
-            url: url_path,
-            dataType: 'json',
-            success: startfarseaDataLayer            
-        });
-    } else { 
-        map.data.removeGeoJson(jejufarsea);
-    }
-});
-
-function startfarseaDataLayer(geojson) {    
-    jejufarsea = geojson;
-    map.data.addGeoJson(geojson);
-}
-
 jejuoleum_check.addEventListener('change', function () {
 
     if (this.checked) {
-        var url_path = './geojson/jeju_oleum_231115.geojson';
+        var url_path = './geojson/jeju_oleum.geojson';
         $.ajax({
             url: url_path,
             dataType: 'json',
@@ -318,10 +178,10 @@ jejuoleum_check.addEventListener('change', function () {
         });
     } else { 
 
-        for(let i = 0; i<markerList.length;  i++) {
-            markerList[i].setMap(null);
-            circleList[i].setMap(null);   
-            infoWindowList[i] = null;
+        for(let i = 0; i<oleummarkerList.length;  i++) {
+            oleummarkerList[i].setMap(null);
+            oleumcircleList[i].setMap(null);   
+            oleuminfoWindowList[i] = null;
         }   
         
     }
@@ -330,7 +190,7 @@ jejuoleum_check.addEventListener('change', function () {
 function startoleumDataLayer(geojson) {    
    
     // window.alert(geojson.features.length);
-    var count, i, coord, point, feature, dia, name, myicon_url;    
+    var count, i, coord, point, feature, dia, name, myicon_url, markercon;    
     count = geojson.features.length;
     
     // myicon_url = 'https://github.com/ryooyg/RyooInJeju/blob/3561068d0e2a8b3a388b1f6418ebd89f4a5d84ca/img/circle_default.png';
@@ -362,20 +222,22 @@ function startoleumDataLayer(geojson) {
             fillOpacity: 0.3
         });  
 
+        markercon = '<div style="text-align:left;"> <img src='+myicon_url+'>'+name+'</div>';
+
         var marker = new naver.maps.Marker({
             map: map,
             position: point,
             icon: {
-                url: myicon_url,
+                content: markercon,
                 size: new naver.maps.Size(15, 16),
                 // origin: new naver.maps.Point(0, 0),
                 anchor: new naver.maps.Point(7, 7)
             }
         });
    
-        markerList.push(marker);
-        circleList.push(circle);   
-        infoWindowList.push(infoWindow);
+        oleummarkerList.push(marker);
+        oleumcircleList.push(circle);   
+        oleuminfoWindowList.push(infoWindow);
     }   
 
     // window.alert(circles.length);
@@ -386,152 +248,31 @@ function startoleumDataLayer(geojson) {
     
     // window.alert(circleList.length);
 
-    for(let i = 0, ii = markerList.length; i < ii; i++) {
-        naver.maps.Event.addListener(map, "click", ClickMap(i));
-        naver.maps.Event.addListener(markerList[i], "click", getClickHandler(i));
+    for(let i = 0, ii = oleummarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", oleumClickMap(i));
+        naver.maps.Event.addListener(oleummarkerList[i], "click", oleumgetClickHandler(i));
     }         
 }
 
-function ClickMap(i) {
+function oleumClickMap(i) {
     return function () {
-      var infowindow = infoWindowList[i];
+      var infowindow = oleuminfoWindowList[i];
       infowindow.close()
     }
 }
 
-function getClickHandler(i) {
+function oleumgetClickHandler(i) {
     return function() {
-      var marker = markerList[i]
-      var infowindow = infoWindowList[i]
+      
+        var marker = oleummarkerList[i]
+      var infowindow = oleuminfoWindowList[i]
+
       if(infowindow.getMap())  {// getMap -> infowindow가 표시 유무에 따라 true/false
         infowindow.close()
       } else {
         infowindow.open(map, marker);
         map.setZoom(14, false);
         map.panTo(marker.position)
-      }
-    }
-}
-
-jejuaws_check.addEventListener('change', function () {
-    if (this.checked) {
-        var url_path = './geojson/jeju_obs.geojson';
-        $.ajax({            
-            url: url_path,
-            dataType: 'json',
-            success: startawsDataLayer            
-        });
-    } else {  
-        
-        for(let i = 0; i<awsmarkerList.length;  i++) {
-            awsmarkerList[i].setMap(null);
-            awsinfoWindowList[i] = null;
-        }           
-    }
-});
-
-function startawsDataLayer(geojson) {    
-   
-    // window.alert(geojson.features.length);
-    var count, i, coord, point, feature, dia, stname, eqname, co;    
-    var myicon_url;
-    count = geojson.features.length;
-    
-    for(i = 0; i < count; i++) 
-    {
-        feature = geojson.features[i]; 
-
-        stname = feature.properties['지점명'];
-        eqname = feature.properties['장비명'];
-        
-        if (eqname == '방재기상관측장비' ) {
-            myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";            
-            // myicon_url = './markers/aws.png';
-        } else if (eqname == '종관기상관측장비') {
-            myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/asos.png";
-            // myicon_url = './markers/asos.png';
-        } else if (eqname == '해양기상부이') {
-            myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/buoy.png";
-            // myicon_url = './markers/buoy.png';
-        } else if (eqname == '파고부이') {
-            myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/tidalbuoy.png";
-            // myicon_url = './markers/tidalbuoy.png';
-        } else if (eqname == '지진관측장비') {
-            myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/earth.png";
-            // myicon_url = './markers/earth.png';
-        } else if (eqname == '연직바람관측장비') {
-            myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/wind.png";
-            // myicon_url = './markers/seasos.png';
-        }        
-        // else if (eqname == '연안방재관측장비') {
-        //     myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/beacon.png";
-        //     // myicon_url = './markers/seasos.png';
-        // }         
-        else {
-            myicon_url='';
-            // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/wind.png";
-            // myicon_url = './markers/wind.png';
-        }        
-
-        coord = feature.geometry.coordinates;
-        // window.alert(coord[0]);
-        co = coord[0]
-
-        var y = co[1];
-        var x = co[0];
-        // window.alert(x);
-        // window.alert(y);
-        point = new naver.maps.LatLng(y, x);        
-
-        var infoWindow = new naver.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:10px;"> 지점명 : <b>'+stname+' </b> <p>'+eqname+'</p></div>'
-        });
-
-        var marker = new naver.maps.Marker({
-            map: map,
-            position: point,
-            icon: {
-                url: myicon_url,
-                size: new naver.maps.Size(25, 25),
-                origin: new naver.maps.Point(0, 0),
-                anchor: new naver.maps.Point(12, 12)
-            }
-        });   
-        awsmarkerList.push(marker);
-        awsinfoWindowList.push(infoWindow);
-    }   
-
-    // window.alert(circles.length);
-
-    // for (var i=0, ii=circles.length; i<ii; i++) {
-    //     naver.maps.Event.addListener(circles[i], 'click', getClickHandler(i));
-    // }
-    
-    // window.alert(circleList.length);
-
-    for(let i = 0, ii = awsmarkerList.length; i < ii; i++) {
-        naver.maps.Event.addListener(map, "click", awsClickMap(i));
-        naver.maps.Event.addListener(awsmarkerList[i], "click", awsgetClickHandler(i));
-    }         
-}
-
-function awsClickMap(i) {
-    return function () {
-      var infowindow = awsinfoWindowList[i];
-      infowindow.close()
-    }
-}
-
-function awsgetClickHandler(i) {
-    return function() {
-      var marker = awsmarkerList[i]
-      var infowindow = awsinfoWindowList[i]
-      if(infowindow.getMap())  {// getMap -> infowindow가 표시 유무에 따라 true/false
-        infowindow.close()
-      } else {
-        infowindow.open(map, marker);
-        // map.setZoom(14, false);
-        // map.panTo(marker.position)
       }
     }
 }
@@ -785,6 +526,622 @@ function startzptDataLayer(geojson) {
 
 }
 
+jejucafe_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_favorites.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startjejucafeDataLayer            
+        });
+
+    } else { 
+
+        for(let i = 0; i<jejucafemarkerList.length;  i++) {
+            jejucafemarkerList[i].setMap(null);
+            jejucafeinfoWindowList[i] = null;
+        }  
+        // map.data.removeGeoJson(jejucafe);        
+    }
+});
+
+function startjejucafeDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count, region;    
+    var infocon, markercon, myicon_url;
+    var layer;
+    
+    count = geojson.features.length;
+    // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
+    myicon_url ='./img/jeju_cafe.png';
+
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];           
+
+        if (layer != '제주 카페') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        jejucafemarkerList.push(marker);
+        jejucafeinfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = jejucafemarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", jejucafeClickMap(i));
+        naver.maps.Event.addListener(jejucafemarkerList[i], "click", jejucafegetClickHandler(i));
+    }   
+
+}
+
+function jejucafeClickMap(i) {
+    return function () {
+      var infowindow = jejucafeinfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function jejucafegetClickHandler(i) {
+    return function() {
+      var marker = jejucafemarkerList[i]
+      var infowindow = jejucafeinfoWindowList[i]
+      if(infowindow.getMap())  {// getMap -> infowindow가 표시 유무에 따라 true/false
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+        // map.setZoom(14, false);
+        // map.panTo(marker.position)
+      }
+    }
+}
+
+jejurest_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_favorites.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startjejurestDataLayer            
+        });
+
+    } else { 
+
+        for(let i = 0; i<jejurestmarkerList.length;  i++) {
+            jejurestmarkerList[i].setMap(null);
+            jejurestinfoWindowList[i] = null;
+        }
+    }
+});
+
+function startjejurestDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count, region;    
+    var infocon, markercon, myicon_url;
+    var layer;
+    
+    count = geojson.features.length;
+    // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
+    myicon_url ='./img/jeju_rest.png';
+
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];           
+
+        if (layer != '제주 식당') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        jejurestmarkerList.push(marker);
+        jejurestinfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = jejurestmarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", jejurestClickMap(i));
+        naver.maps.Event.addListener(jejurestmarkerList[i], "click", jejurestgetClickHandler(i));
+    }
+}
+
+function jejurestClickMap(i) {
+    return function () {
+      var infowindow = jejurestinfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function jejurestgetClickHandler(i) {
+    return function() {
+      var marker = jejurestmarkerList[i]
+      var infowindow = jejurestinfoWindowList[i]
+      if(infowindow.getMap()){
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+      }
+    }
+}
+
+
+seogwipocafe_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_favorites.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startseogwipocafeDataLayer            
+        });
+
+    } else { 
+
+        for(let i = 0; i<seogwipocafemarkerList.length;  i++) {
+            seogwipocafemarkerList[i].setMap(null);
+            seogwipocafeinfoWindowList[i] = null;
+        }
+    }
+});
+
+function startseogwipocafeDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count, region;    
+    var infocon, markercon, myicon_url;
+    var layer;
+    
+    count = geojson.features.length;
+    // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
+    myicon_url ='./img/seogwipo_cafe.jpg';
+
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];           
+
+        if (layer != '서귀포 카페') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        seogwipocafemarkerList.push(marker);
+        seogwipocafeinfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = seogwipocafemarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", seogwipocafeClickMap(i));
+        naver.maps.Event.addListener(seogwipocafemarkerList[i], "click", seogwipocafegetClickHandler(i));
+    }
+}
+
+function seogwipocafeClickMap(i) {
+    return function () {
+      var infowindow = seogwipocafeinfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function seogwipocafegetClickHandler(i) {
+    return function() {
+      var marker = seogwipocafemarkerList[i]
+      var infowindow = seogwipocafeinfoWindowList[i]
+      if(infowindow.getMap()){
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+      }
+    }
+}
+
+seogwiporest_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_favorites.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startseogwiporestDataLayer            
+        });
+
+    } else { 
+
+        for(let i = 0; i<seogwiporestmarkerList.length;  i++) {
+            seogwiporestmarkerList[i].setMap(null);
+            seogwiporestinfoWindowList[i] = null;
+        }
+    }
+});
+
+function startseogwiporestDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count, region;    
+    var infocon, markercon, myicon_url;
+    var layer;
+    
+    count = geojson.features.length;
+    // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
+    myicon_url ='./img/seogwipo_rest.png';
+
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];           
+
+        if (layer != '서귀포 식당') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        seogwiporestmarkerList.push(marker);
+        seogwiporestinfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = seogwiporestmarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", seogwiporestClickMap(i));
+        naver.maps.Event.addListener(seogwiporestmarkerList[i], "click", seogwiporestgetClickHandler(i));
+    }
+}
+
+function seogwiporestClickMap(i) {
+    return function () {
+      var infowindow = seogwiporestinfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function seogwiporestgetClickHandler(i) {
+    return function() {
+      var marker = seogwiporestmarkerList[i]
+      var infowindow = seogwiporestinfoWindowList[i]
+      if(infowindow.getMap()){
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+      }
+    }
+}
+
+
+jejuheajang_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_favorites.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startjejuheajangDataLayer            
+        });
+
+    } else { 
+
+        for(let i = 0; i<jejuheajangmarkerList.length;  i++) {
+            jejuheajangmarkerList[i].setMap(null);
+            jejuheajanginfoWindowList[i] = null;
+        }
+    }
+});
+
+function startjejuheajangDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count, region;    
+    var infocon, markercon, myicon_url;
+    var layer;
+    
+    count = geojson.features.length;
+    // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
+    myicon_url ='./img/jejuheajang.png';
+
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];           
+
+        if (layer != '제주 해장국') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        jejuheajangmarkerList.push(marker);
+        jejuheajanginfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = jejuheajangmarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", jejuheajangClickMap(i));
+        naver.maps.Event.addListener(jejuheajangmarkerList[i], "click", jejuheajanggetClickHandler(i));
+    }
+}
+
+function jejuheajangClickMap(i) {
+    return function () {
+      var infowindow = jejuheajanginfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function jejuheajanggetClickHandler(i) {
+    return function() {
+      var marker = jejuheajangmarkerList[i]
+      var infowindow = jejuheajanginfoWindowList[i]
+      if(infowindow.getMap()){
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+      }
+    }
+}
+
+jejucctv_check.addEventListener('change', function () {
+    if (this.checked) {        
+        var url_path = './json/jeju_cctv.json';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startjejucctvDataLayer            
+        });
+
+    } else { 
+        for(let i = 0; i<jejucctvmarkerList.length;  i++) {
+            jejucctvmarkerList[i].setMap(null);
+            jejucctvinfoWindowList[i] = null;
+        }  
+        // map.data.removeGeoJson(jejucctv);        
+    }
+});
+
+function startjejucctvDataLayer(json) {    
+
+    var count, i, point, name, count;    
+    var infocon, markercon, myicon_url;
+    var channel, vodUrl, x, y;
+    
+    count = json.length;
+    myicon_url ='./img/cctv.png';
+    for(i = 0; i < count; i++) 
+    {
+        channel = json[i].channel
+        vodUrl = json[i].vodUrl
+        name = json[i].cctvStrtSecnNm
+        y = json[i].y;
+        x = json[i].x;    
+        point = new naver.maps.LatLng(y, x);
+        // infocon = '<div style="width:250px;text-align:left;"          >장    소 : '+name+'<p>'+
+        //           '<a href="r1.html?vodUrl='+vodUrl+'" target="_blank">채널번호 : '+channel+'</a></p></div>';
+        // infocon ='\
+        //     <iframe title="cctv video player" class="video-js" controls autoplay preload="auto" width="720" height="480" \
+        //             src="https://cctvsecn01.ktict.co.kr/7204/IR6-NtfRbxfdEjTb8h4zerwqHl9Pg6JF4N8R64QEujLIkILQQ__jqmEojemCTcsh" type="video/mp4" frameborder="0"> \
+        //     </iframe>';
+        
+        infocon =' \
+        <div style="width:320px;text-align:left;">장 소 : '+name+'<p>\
+          <video class="video-js" width="680" height="480" controls preload="auto" data-setup={"loop": "true", "autoplay": true }>\
+                <source src="'+vodUrl+'" type="video/mp4" /> \
+          </video> </p>'+'\
+          <p><a href="r1.html?vodUrl='+vodUrl+'" target="_blank">채널번호 : '+channel+'</a></p></div>';
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,            
+            // maxWidth: 700,
+            // backgroundColor: "#eee",
+            // // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'><b>'+name+'</b></div>';
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(20, 20),
+                anchor: new naver.maps.Point(10, 10)
+            },            
+        });
+        jejucctvmarkerList.push(marker);
+        jejucctvinfoWindowList.push(infoWindow);
+    }
+    for(let i = 0, ii = jejucctvmarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", jejucctvClickMap(i));
+        naver.maps.Event.addListener(jejucctvmarkerList[i], "click", jejucctvgetClickHandler(i));
+    }   
+}
+
+function jejucctvClickMap(i) {
+    return function () {
+      var infowindow = jejucctvinfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function jejucctvgetClickHandler(i) {
+    return function() {
+      var marker = jejucctvmarkerList[i]
+      var infowindow = jejucctvinfoWindowList[i]
+      if(infowindow.getMap())  {// getMap -> infowindow가 표시 유무에 따라 true/false
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+        // map.setZoom(14, false);
+        // map.panTo(marker.position)
+      }
+    }
+}
+
 
 // var contentString = [
     //     '<div class="iw_inner">',
@@ -869,3 +1226,255 @@ function startzptDataLayer(geojson) {
 //         btn.addClass('control-on').val('POI 끄기');
 //     }
 // });
+
+// var HOME_PATH = window.HOME_PATH || '.';
+// var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
+//     map = new naver.maps.Map('map', {
+//         center: cityhall,
+//         zoom: 10
+//     }),
+//     marker = new naver.maps.Marker({
+//         map: map,
+//         position: cityhall
+//     });
+
+// var contentString = [
+//         '<div class="iw_inner">',
+//         '   <h3>서울특별시청</h3>',
+//         '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+//         '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+//         '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
+//         '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+//         '   </p>',
+//         '</div>'
+//     ].join('');
+
+// var infowindow = new naver.maps.InfoWindow({
+//     content: contentString,
+//     maxWidth: 140,
+//     backgroundColor: "#eee",
+//     borderColor: "#2db400",
+//     borderWidth: 5,
+//     anchorSize: new naver.maps.Size(30, 30),
+//     anchorSkew: true,
+//     anchorColor: "#eee",
+//     pixelOffset: new naver.maps.Point(20, -20)
+// });
+
+// const iconStyle = `<div style="background-color:red;">Hello</div>`;
+
+// const content = [
+//         "<div>",
+//         `       <img src="/icon/current-location.svg" width="85" height="85" alt="현재 위치"/>`,
+//         "</div>",
+//       ].join("");
+// jejucafe = geojson;
+    // map.data.addGeoJson(geojson);
+
+
+    // var count, i, coord, point, feature, stname, eqname, co;    
+    // var myicon_url;
+    // var infocon;
+    // var infoborderColor;
+    // var markercon;
+
+    // count = geojson.features.length;
+    
+    // for(i = 0; i < count; i++) 
+    // {
+    //     feature = geojson.features[i]; 
+
+    //     stname = feature.properties['지점명'];
+    //     eqname = feature.properties['장비명'];
+        
+    //     if (eqname == '방재기상관측장비' ) {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";            
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+' </b> <p> 장비명 : <b>'+eqname+'</b> </p></div>';
+    //         infoborderColor = "#2db400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'>'+stname+'</div>';
+    //         // myicon_url = './markers/aws.png';
+    //     } else if (eqname == '종관기상관측장비') {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/asos.png";
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+'</p></div>';
+    //         infoborderColor = "#222400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'></div>';
+    //         // myicon_url = './markers/asos.png';
+    //     } else if (eqname == '해양기상부이') {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/buoy.png";
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+' </b> <p> 장비명 : <b>'+eqname+'</b> </p></div>';
+    //         infoborderColor = "#2db400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'>'+stname+'</div>';
+    //         // myicon_url = './markers/buoy.png';
+    //     } else if (eqname == '파고부이') {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/tidalbuoy.png";
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+' </b> <p> 장비명 : <b>'+eqname+'</b> </p></div>';
+    //         infoborderColor = "#2db400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'>'+stname+'</div>';
+    //         // myicon_url = './markers/tidalbuoy.png';
+    //     } else if (eqname == '지진관측장비') {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/earth.png";
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+' </b> <p> 장비명 : <b>'+eqname+'</b> </p></div>';
+    //         infoborderColor = "#2db400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'></div>';
+    //         // myicon_url = './markers/earth.png';
+    //     } else if (eqname == '연직바람관측장비') {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/wind.png";
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+' </b> <p> 장비명 : <b>'+eqname+'</b> </p></div>';
+    //         infoborderColor = "#2db400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'>'+stname+'</div>';
+    //         // myicon_url = './markers/seasos.png';
+    //     }        
+    //     // else if (eqname == '연안방재관측장비') {
+    //     //     myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/beacon.png";
+    //     //     // myicon_url = './markers/seasos.png';
+    //     // }         
+    //     else {
+    //         myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/wind.png";            
+    //         infocon = '<div style="width:200px;text-align:left;padding:10px;"> 지점명 : <b>'+stname+' </b> <p> 장비명 : <b>'+eqname+'</b> </p></div>';
+    //         infoborderColor = "#2db400";
+    //         markercon = '<div style="text-align:center;padding:10px;"> <img src='+myicon_url+'>'+stname+'</div>';
+    //         // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/wind.png";
+    //         // myicon_url = './markers/wind.png';
+    //     }        
+
+    //     coord = feature.geometry.coordinates;
+    //     // window.alert(coord[0]);
+    //     co = coord[0]
+    //     var y = co[1];
+    //     var x = co[0];
+    //     // window.alert(x);
+    //     // window.alert(y);
+    //     point = new naver.maps.LatLng(y, x);        
+    //     var infoWindow = new naver.maps.InfoWindow({
+    //         content: infocon,
+    //         maxWidth: 200,
+    //         backgroundColor: "#eee",
+    //         borderColor: infoborderColor,
+    //         borderWidth: 5,
+    //         anchorSize: new naver.maps.Size(50, 50),
+    //         anchorSkew: true,
+    //         anchorColor: "#eee",
+    //         pixelOffset: new naver.maps.Point(20, -20)
+    //     });
+    //     // window.alert(cont);
+    //     var marker = new naver.maps.Marker({
+    //         map: map,
+    //         position: point,            
+    //         title: stname,
+    //         icon: {
+    //             content: markercon,
+    //             size: new naver.maps.Size(25, 25),
+    //             origin: new naver.maps.Point(0, 0),
+    //             anchor: new naver.maps.Point(12, 12)
+    //         },
+            
+    //     });        
+    //     awsmarkerList.push(marker);
+    //     awsinfoWindowList.push(infoWindow);
+    // }   
+
+    // for(let i = 0, ii = awsmarkerList.length; i < ii; i++) {
+    //     naver.maps.Event.addListener(map, "click", awsClickMap(i));
+    //     naver.maps.Event.addListener(awsmarkerList[i], "click", awsgetClickHandler(i));
+    // }    
+
+    // jejucafemarkerList=[];
+    // jejucafeinfoWindowList=[];
+
+
+    // map.data.setStyle(function(feature) {
+    //     var color = 'red';
+
+    //     if (feature.getProperty('isColorful')) {
+    //         color = feature.getProperty('color');
+    //     }
+
+    //     return {
+    //         fillColor: color,
+    //         strokeColor: color,
+    //         strokeWeight: 3,
+    //         icon: null,            
+    //     };
+    // });
+
+    // // map.data.addListener('click', function(e) {
+    // //     e.feature.setProperty('isColorful', true);
+    // // });
+
+    // // map.data.addListener('dblclick', function(e) {
+    // //     var bounds = e.feature.getBounds();
+
+    // //     if (bounds) {
+    // //         map.panToBounds(bounds);
+    // //     }
+    // // });
+
+    // map.data.addListener('mouseover', function(e) {
+    //     map.data.overrideStyle(e.feature, {
+    //         strokeWeight: 8,
+    //         strokeColor: 'blue',
+    //         // text: feature.properties['PMNTN_NM'],
+    //         // icon: HOME_PATH +'/img/example/pin_spot.png'
+    //     });
+    // });
+
+    // map.data.addListener('mouseout', function(e) {
+    //     map.data.revertStyle();
+    // // });
+    // ' <!DOCTYPE html> \
+    //     <html> \
+    //       <head> \
+    //         <meta charset="UTF-8"> \
+    //         <meta http-equiv="X-UA-Compatible" content="IE=edge"> \
+    //         <meta name="viewport" content="width=device-width, initial-scale=1.0"> \
+    //         <title>어쩌다 제주도민</title> \
+    //         <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video-js.min.css" rel="stylesheet"> \
+    //         <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video.min.js"></script> \
+    //       </head> \
+    //       <body> \
+    //         <div class="cctv_co"> \
+    //                     <video id="video1" class="video-js vjs-default-skin" style="width:100%;"></video> \
+    //             <script> \
+    //                 videojs("video1", {  \
+    //                     sources : [ { src : "http://119.65.216.155:1935/live/cctv05.stream_360p/playlist.m3u8", type : "application/x-mpegURL"} ] \
+    //                                   , controls : false \
+    //                                   , playsinline : true \
+    //                                   , muted : true \
+    //                                   , preload : "auto" \
+    //                                   , autoplay : true \
+    //                                   , responsive : true \
+    //                                   ,aspectRatio : "4:3" \
+    //                                     });	 \
+    //             </script> \
+    //         </div> \
+    //       </body>\
+    //     </html>';
+//     \
+//         <!DOCTYPE html> \
+// <html> \
+//   <head> \
+//     <meta charset="UTF-8"> \
+//     <meta http-equiv="X-UA-Compatible" content="IE=edge"> \
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0"> \
+//     <title>어쩌다 제주도민</title> \
+//     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video-js.min.css" rel="stylesheet"> \
+//     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/video.min.js"></script> \
+//   </head> \
+//   <body> \
+//     <div class="cctv_co" style="width:1000px" > \
+// 		<video id="video1" class="video-js vjs-default-skin" style="width:90%;"></video>                                      \
+//         <script> \
+//             videojs("video1", {  \
+//                 sources : [ { src : "http://119.65.216.155:1935/live/cctv05.stream_360p/playlist.m3u8", type : "application/x-mpegURL"} ] \
+//                               , controls : false \
+//                               , playsinline : true \
+//                               , muted : true \
+//                               , preload : "auto" \
+//                               , autoplay : true \
+//                               , responsive : true \
+//                               ,aspectRatio : "4:3" \
+//                                 });	\
+//         </script> \
+//     </div> \
+//   </body> \
+// </html>';

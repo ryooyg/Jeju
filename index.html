@@ -49,10 +49,14 @@
 
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7yqgqom06m"></script>
     <script src="./js/jquery/jquery-1.9.1.js"></script>
+    <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+
 </head>
 
 <body>
-  <div id="wrap" class="section">
+  <div id="wrap" class="section">    
+
         <div id="map" class="map"></div>
             <div class="buttons">
                 <input id="NORMAL" type="button" value="일반지도" class="control-btn control-on" />
@@ -62,19 +66,30 @@
                 <input id="osm_map" type="button" value="osm" class="control-btn" />
             </div>
         </div> 
+       
         <div>
           <tr>
-             <td><label><input type="checkbox" id="jejuland"  >지 역</label></td>
-             <td><label><input type="checkbox" id="jejusea"   >앞바다</label></td>
-             <td><label><input type="checkbox" id="jejufarsea">먼바다</label></td>
+             <td><label><input type="checkbox" id="jeju_cafe"  >제주카페</label></td>
+             <td><label><input type="checkbox" id="jeju_rest"  >제주식당</label></td>
+             <td><label><input type="checkbox" id="seogwipo_cafe">서귀포카페</label></td>
+             <td><label><input type="checkbox" id="seogwipo_rest">서귀포식당</label></td>
+             <td><label><input type="checkbox" id="jeju_heajang">제주해장</label></td>          
+            <td><label><input type="checkbox" id="jeju_cctv">CCTV</label></td>                        
+          </tr>
+        </div>
+
+        <div>
+          <tr>
              <td><label><input type="checkbox" id="jejuoleum">오름</label></td>
              <td><label><input type="checkbox" id="jejuhiking">등산로</label></td>
              <td><label><input type="checkbox" id="jeju_olle_trail">제주올레</label></td>
              <td><label><input type="checkbox" id="jeju_halla_trail">한라산둘레</label></td>
-             <td><label><input type="checkbox" id="jeju_zpt">제로포인트트레일</label></td>
-             <td><label><input type="checkbox" id="jejuaws">제주기상장비</label></td>             
-          </tr>
-       </div>       
+             <td><label><input type="checkbox" id="jeju_zpt">제로포인트트레일</label></td>        
+          </tr>          
+       </div>  
+
+       
+
    </div>
 
    <script>
@@ -93,3 +108,5 @@
 
 </body>
 </html>
+
+<!-- https://map.naver.com/p/api/cctv?cctvId=7250 -->
