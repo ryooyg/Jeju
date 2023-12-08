@@ -552,6 +552,7 @@ function startjejucafeDataLayer(geojson) {
     var layer;
     
     count = geojson.features.length;
+    
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
     myicon_url ='./img/jeju_cafe.png';
 
@@ -761,7 +762,7 @@ function startseogwipocafeDataLayer(geojson) {
     
     count = geojson.features.length;
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
-    myicon_url ='./img/seogwipo_cafe.jpg';
+    myicon_url ='./img/seogwipo_cafe.png';
 
     for(i = 0; i < count; i++) 
     {
@@ -1098,7 +1099,7 @@ function startjejucctvDataLayer(json) {
             content: infocon,            
             // maxWidth: 700,
             // backgroundColor: "#eee",
-            // // borderColor: infoborderColor,
+            // borderColor: infoborderColor,
             // borderWidth: 5,
             // anchorSize: new naver.maps.Size(50, 50),
             // anchorSkew: true,
