@@ -1082,14 +1082,18 @@ function startjejucctvDataLayer(json) {
         //     <iframe title="cctv video player" class="video-js" controls autoplay preload="auto" width="720" height="480" \
         //             src="https://cctvsecn01.ktict.co.kr/7204/IR6-NtfRbxfdEjTb8h4zerwqHl9Pg6JF4N8R64QEujLIkILQQ__jqmEojemCTcsh" type="video/mp4" frameborder="0"> \
         //     </iframe>';
-        
+        // <div><button onclick="jejucctvgetClickHandler(1)" type="button">x</button></div> \
+           
         infocon =' \
-        <div style="width:320px;text-align:left;">장 소 : '+name+'<p>\
-          <video class="video-js" width="680" height="480" controls preload="auto" data-setup={"loop": "true", "autoplay": true }>\
+           <div style="width:305px;text-align:left;height:260px;padding-left:5px; padding-top:5px">장 소 : '+name+'<p> \
+              <video class="video-js vjs-default-skin" preload="auto" poster autoplay loop controls data-setup=\'{}\'>\
                 <source src="'+vodUrl+'" type="video/mp4" /> \
-          </video> </p>'+'\
-          <p><a href="r1.html?vodUrl='+vodUrl+'" target="_blank">채널번호 : '+channel+'</a></p><p>경찰청(UTIC)제공</p></div>';
+              </video> </p>'+' \
+              <p><a href="cctv_temp.html?vodUrl='+vodUrl+'" target="_blank">채널번호 : '+channel+'</a></p> \
+              <p>경찰청(UTIC)제공</p> \
+            </div>';
 
+        
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,            
             // maxWidth: 700,
@@ -1136,8 +1140,6 @@ function jejucctvgetClickHandler(i) {
         infowindow.close()
       } else {
         infowindow.open(map, marker);
-        // map.setZoom(14, false);
-        // map.panTo(marker.position)
       }
     }
 }
