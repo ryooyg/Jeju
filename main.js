@@ -549,10 +549,9 @@ function startjejucafeDataLayer(geojson) {
 
     var count, i, coord, point, feature, name, count, region;    
     var infocon, markercon, myicon_url;
-    var layer;
+    var layer, slink;
     
-    count = geojson.features.length;
-    
+    count = geojson.features.length;    
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
     myicon_url ='./img/jeju_cafe.png';
 
@@ -560,19 +559,19 @@ function startjejucafeDataLayer(geojson) {
     {
         feature = geojson.features[i]; 
         name = feature.properties['Name'];
-        layer = feature.properties['layer'];           
-
+        layer = feature.properties['layer'];
+        slink = feature.properties['link'];
+        // window.alert(slink)
         if (layer != '제주 카페') {
             continue;
         }
-
         coord = feature.geometry.coordinates;
         var y = coord[1];
         var x = coord[0];
-        point = new naver.maps.LatLng(y, x);                
+        point = new naver.maps.LatLng(y, x);                        
         
-        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
-
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';
+        
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,
             // maxWidth: 200,
@@ -655,7 +654,7 @@ function startjejurestDataLayer(geojson) {
 
     var count, i, coord, point, feature, name, count, region;    
     var infocon, markercon, myicon_url;
-    var layer;
+    var layer, slink;
     
     count = geojson.features.length;
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
@@ -665,7 +664,8 @@ function startjejurestDataLayer(geojson) {
     {
         feature = geojson.features[i]; 
         name = feature.properties['Name'];
-        layer = feature.properties['layer'];           
+        layer = feature.properties['layer'];
+        slink = feature.properties['link'];
 
         if (layer != '제주 식당') {
             continue;
@@ -676,7 +676,7 @@ function startjejurestDataLayer(geojson) {
         var x = coord[0];
         point = new naver.maps.LatLng(y, x);                
         
-        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';// infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
 
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,
@@ -758,7 +758,7 @@ function startseogwipocafeDataLayer(geojson) {
 
     var count, i, coord, point, feature, name, count, region;    
     var infocon, markercon, myicon_url;
-    var layer;
+    var layer, slink;
     
     count = geojson.features.length;
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
@@ -768,7 +768,8 @@ function startseogwipocafeDataLayer(geojson) {
     {
         feature = geojson.features[i]; 
         name = feature.properties['Name'];
-        layer = feature.properties['layer'];           
+        layer = feature.properties['layer']; 
+        slink = feature.properties['link'];          
 
         if (layer != '서귀포 카페') {
             continue;
@@ -779,7 +780,9 @@ function startseogwipocafeDataLayer(geojson) {
         var x = coord[0];
         point = new naver.maps.LatLng(y, x);                
         
-        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        // infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';
+        
 
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,
@@ -860,7 +863,7 @@ function startseogwiporestDataLayer(geojson) {
 
     var count, i, coord, point, feature, name, count, region;    
     var infocon, markercon, myicon_url;
-    var layer;
+    var layer, slink;
     
     count = geojson.features.length;
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
@@ -870,7 +873,8 @@ function startseogwiporestDataLayer(geojson) {
     {
         feature = geojson.features[i]; 
         name = feature.properties['Name'];
-        layer = feature.properties['layer'];           
+        layer = feature.properties['layer'];
+        slink = feature.properties['link'];         
 
         if (layer != '서귀포 식당') {
             continue;
@@ -881,7 +885,9 @@ function startseogwiporestDataLayer(geojson) {
         var x = coord[0];
         point = new naver.maps.LatLng(y, x);                
         
-        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        // infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';
+        
 
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,
@@ -940,7 +946,6 @@ function seogwiporestgetClickHandler(i) {
     }
 }
 
-
 jejuheajang_check.addEventListener('change', function () {
     if (this.checked) {
         var url_path = './geojson/jeju_favorites.geojson';
@@ -963,7 +968,7 @@ function startjejuheajangDataLayer(geojson) {
 
     var count, i, coord, point, feature, name, count, region;    
     var infocon, markercon, myicon_url;
-    var layer;
+    var layer, slink;
     
     count = geojson.features.length;
     // myicon_url = "https://raw.githubusercontent.com/ryooyg/Jeju/946c7936fa9a4356d899b51c62e82b665c4f3721/Markers/aws.png";    
@@ -973,7 +978,8 @@ function startjejuheajangDataLayer(geojson) {
     {
         feature = geojson.features[i]; 
         name = feature.properties['Name'];
-        layer = feature.properties['layer'];           
+        layer = feature.properties['layer'];
+        slink = feature.properties['link'];           
 
         if (layer != '제주 해장국') {
             continue;
@@ -984,7 +990,9 @@ function startjejuheajangDataLayer(geojson) {
         var x = coord[0];
         point = new naver.maps.LatLng(y, x);                
         
-        infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        // infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';
+        
 
         var infoWindow = new naver.maps.InfoWindow({
             content: infocon,
