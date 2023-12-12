@@ -1,4 +1,3 @@
-
 const terrian = document.getElementById('TERRAIN');
 const normal = document.getElementById('NORMAL');
 const sate = document.getElementById('SATELLITE');
@@ -170,6 +169,7 @@ tooltip.appendTo(map.getPanes().floatPane);
 jejuoleum_check.addEventListener('change', function () {
 
     if (this.checked) {
+
         var url_path = './geojson/jeju_oleum.geojson';
         $.ajax({
             url: url_path,
@@ -514,7 +514,7 @@ function startzptDataLayer(geojson) {
     map.data.addGeoJson(geojson);
 
     map.data.setStyle(function(feature) {
-        var color = 'red';
+        var color = 'blue';
 
         if (feature.getProperty('isColorful')) {
             color = feature.getProperty('color');
@@ -543,7 +543,7 @@ function startzptDataLayer(geojson) {
     map.data.addListener('mouseover', function(e) {
         map.data.overrideStyle(e.feature, {
             strokeWeight: 8,
-            strokeColor: 'blue',
+            strokeColor: 'red',
             // text: feature.properties['PMNTN_NM'],
             // icon: HOME_PATH +'/img/example/pin_spot.png'
         });
