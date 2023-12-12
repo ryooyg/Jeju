@@ -330,6 +330,16 @@ function starthikingDataLayer(geojson) {
     // });
 
     map.data.addListener('mouseover', function(e) {
+
+        var feature = e.feature,
+            pathName = feature.getProperty('PMNTN_NM');
+            
+        tooltip.css({
+            display: '',
+            left: e.offset.x,
+            top: e.offset.y
+        }).text(pathName);
+
         map.data.overrideStyle(e.feature, {
             strokeWeight: 8,
             strokeColor: 'red',
@@ -390,6 +400,15 @@ function startolleDataLayer(geojson) {
     // });
 
     map.data.addListener('mouseover', function(e) {
+        var feature = e.feature,
+            pathName = feature.getProperty('name');
+
+        tooltip.css({
+            display: '',
+            left: e.offset.x,
+            top: e.offset.y
+        }).text(pathName);
+
         map.data.overrideStyle(e.feature, {
             strokeWeight: 8,
             strokeColor: 'red',
@@ -423,7 +442,9 @@ jejuhalla_check.addEventListener('change', function () {
 function starthallaDataLayer(geojson) {    
     
     jejuhalla = geojson;
+    
     map.data.addGeoJson(geojson);
+    
     map.data.setStyle(function(feature) {
         var color = 'blue';
 
@@ -452,10 +473,18 @@ function starthallaDataLayer(geojson) {
     // });
 
     map.data.addListener('mouseover', function(e) {
+        var feature = e.feature,
+            pathName = feature.getProperty('layer');
+        tooltip.css({
+            display: '',
+            left: e.offset.x,
+            top: e.offset.y
+        }).text(pathName);
+
         map.data.overrideStyle(e.feature, {
             strokeWeight: 8,
             strokeColor: 'red',
-            // text: feature.properties['PMNTN_NM'],
+            // text: tt,
             // icon: HOME_PATH +'/img/example/pin_spot.png'
         });
     });
