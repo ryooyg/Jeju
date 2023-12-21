@@ -16,6 +16,8 @@ const seogwipocafe_check = document.getElementById('seogwipo_cafe');
 const seogwiporest_check = document.getElementById('seogwipo_rest');
 const jejuheajang_check = document.getElementById('jeju_heajang');
 
+const jejuwishlist_check = document.getElementById('jeju_wishlist');
+const jejucamellia_check = document.getElementById('jeju_camellia');
 const jejucctv_check = document.getElementById('jeju_cctv');
 
 var bicycleLayer = new naver.maps.BicycleLayer();
@@ -55,6 +57,14 @@ var jejuheajanginfoWindowList=[];
 var jejucctv;
 var jejucctvmarkerList=[];
 var jejucctvinfoWindowList=[];
+
+var jejuwishlist;
+var jejuwishlistmarkerList=[];
+var jejuwishlistinfoWindowList=[];
+
+var jejucamellia;
+var jejucamelliamarkerList=[];
+var jejucamelliainfoWindowList=[];
 
 var zoomindex=10;
 var jejucenter=naver.maps.LatLng(33.5507, 126.5706);
@@ -1157,10 +1167,11 @@ function startjejucctvDataLayer(json) {
         jejucctvmarkerList.push(marker);
         jejucctvinfoWindowList.push(infoWindow);
     }
+
     for(let i = 0, ii = jejucctvmarkerList.length; i < ii; i++) {
         naver.maps.Event.addListener(map, "click", jejucctvClickMap(i));
         naver.maps.Event.addListener(jejucctvmarkerList[i], "click", jejucctvgetClickHandler(i));
-    }   
+    }    
 }
 
 function jejucctvClickMap(i) {
@@ -1182,7 +1193,217 @@ function jejucctvgetClickHandler(i) {
     }
 }
 
+// var jejuwishlist;
+// var jejuwishlistmarkerList=[];
+// var jejuwishlistinfoWindowList=[];
 
+// var jejucamellia;
+// var jejucamelliamarkerList=[];
+// var jejucamelliainfoWindowList=[];
+
+jejuwishlist_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_wishlist.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startjejuwishlistDataLayer            
+        });
+    } else { 
+        for(let i = 0; i<jejuwishlistmarkerList.length;  i++) {
+            jejuwishlistmarkerList[i].setMap(null);
+            jejuwishlistinfoWindowList[i] = null;
+        }
+    }
+});
+
+function startjejuwishlistDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count;    
+    var infocon, markercon, myicon_url;
+    var layer, slink;
+    
+    count = geojson.features.length;
+    myicon_url ='./img/jeju_wishlist.png';
+
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];
+        slink = feature.properties['link'];           
+
+        if (layer != '제주 가볼곳') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        // infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';
+        
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        jejuwishlistmarkerList.push(marker);
+        jejuwishlistinfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = jejuwishlistmarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", jejuwishlistClickMap(i));
+        naver.maps.Event.addListener(jejuwishlistmarkerList[i], "click", jejuwishlistgetClickHandler(i));
+    }
+}
+
+function jejuwishlistClickMap(i) {
+    return function () {
+      var infowindow = jejuwishlistinfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function jejuwishlistgetClickHandler(i) {
+    return function() {
+      var marker = jejuwishlistmarkerList[i]
+      var infowindow = jejuwishlistinfoWindowList[i]
+      if(infowindow.getMap()){
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+      }
+    }
+}
+
+jejucamellia_check.addEventListener('change', function () {
+    if (this.checked) {
+        var url_path = './geojson/jeju_camellia.geojson';
+        $.ajax({
+            url: url_path,
+            dataType: 'json',
+            success: startjejucamelliaDataLayer            
+        });
+    } else { 
+        for(let i = 0; i<jejucamelliamarkerList.length;  i++) {
+            jejucamelliamarkerList[i].setMap(null);
+            jejucamelliainfoWindowList[i] = null;
+        }
+    }
+});
+
+function startjejucamelliaDataLayer(geojson) {    
+
+    var count, i, coord, point, feature, name, count;    
+    var infocon, markercon, myicon_url;
+    var layer, slink;
+    
+    count = geojson.features.length;
+    myicon_url ='./img/jeju_camellia.png';
+    
+    for(i = 0; i < count; i++) 
+    {
+        feature = geojson.features[i]; 
+        name = feature.properties['Name'];
+        layer = feature.properties['layer'];
+        slink = feature.properties['link'];           
+
+        if (layer != '제주 동백') {
+            continue;
+        }
+
+        coord = feature.geometry.coordinates;
+        var y = coord[1];
+        var x = coord[0];
+        point = new naver.maps.LatLng(y, x);                
+        
+        // infocon = '<div style="width:250px;text-align:left;"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b> </p></div>';
+        infocon = '<div style="width:250px;text-align:left;padding-left:5px"> 지  역 : <b>'+layer+' </b> <p> 상호 : <b>'+ name+'</b></p><p><a href="'+slink+'" target="_blank">정보</a></a></p></div>';
+        
+
+        var infoWindow = new naver.maps.InfoWindow({
+            content: infocon,
+            // maxWidth: 200,
+            // backgroundColor: "#eee",
+            // borderColor: infoborderColor,
+            // borderWidth: 5,
+            // anchorSize: new naver.maps.Size(50, 50),
+            // anchorSkew: true,
+            // anchorColor: "#eee",
+            // pixelOffset: new naver.maps.Point(20, -20)
+        });
+        // window.alert(cont);
+
+
+        markercon = '<div style="text-align:center;"> <img src='+myicon_url+'>'+name+'</div>';
+
+        var marker = new naver.maps.Marker({
+            map: map,
+            position: point,            
+            // title: stname,
+            icon: {
+                content: markercon,
+                size: new naver.maps.Size(8, 8),
+                // anchor: new naver.maps.Point(7, 7)
+            },
+            
+        });
+
+        jejucamelliamarkerList.push(marker);
+        jejucamelliainfoWindowList.push(infoWindow);
+    }   
+
+    for(let i = 0, ii = jejucamelliamarkerList.length; i < ii; i++) {
+        naver.maps.Event.addListener(map, "click", jejucamelliaClickMap(i));
+        naver.maps.Event.addListener(jejucamelliamarkerList[i], "click", jejucamelliagetClickHandler(i));
+    }
+}
+
+function jejucamelliaClickMap(i) {
+    return function () {
+      var infowindow = jejucamelliainfoWindowList[i];
+      infowindow.close()
+    }
+}
+
+function jejucamelliagetClickHandler(i) {
+    return function() {
+      var marker = jejucamelliamarkerList[i]
+      var infowindow = jejucamelliainfoWindowList[i]
+      if(infowindow.getMap()){
+        infowindow.close()
+      } else {
+        infowindow.open(map, marker);
+      }
+    }
+}
 // var contentString = [
     //     '<div class="iw_inner">',
     //     '   <h3>제주 중심</h3>',    

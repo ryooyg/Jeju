@@ -14,6 +14,7 @@
       .map {
         background: #f8f4f0;
       }
+      .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
     </style>
 
     <style type="text/css">      
@@ -45,13 +46,13 @@
 
         #wrap .buttons { position:absolute;top:3px;left:3px;z-index:1000;padding:5px; }
         #wrap .buttons .control-btn { margin:0 5px 5px 0; }
+      
     </style>
 
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7yqgqom06m"></script>
     <script src="./js/jquery/jquery-1.9.1.js"></script>
     <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
-
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>    
 </head>
 
 <body>
@@ -73,8 +74,10 @@
              <td><label><input type="checkbox" id="jeju_rest"  >제주식당</label></td>
              <td><label><input type="checkbox" id="seogwipo_cafe">서귀포카페</label></td>
              <td><label><input type="checkbox" id="seogwipo_rest">서귀포식당</label></td>
-             <td><label><input type="checkbox" id="jeju_heajang">제주해장국</label></td>          
-            <td><label><input type="checkbox" id="jeju_cctv">CCTV</label></td>                        
+             <td><label><input type="checkbox" id="jeju_heajang">제주해장국</label></td>
+             <td><label><input type="checkbox" id="jeju_wishlist">제주 가볼곳</label></td>
+             <td><label><input type="checkbox" id="jeju_camellia">제주 동백</label></td>
+             <td><label><input type="checkbox" id="jeju_cctv">CCTV</label></td>                        
           </tr>
         </div>
         
@@ -108,5 +111,3 @@
 
 </body>
 </html>
-
-<!-- https://map.naver.com/p/api/cctv?cctvId=7250 -->
