@@ -18,6 +18,6 @@
 { "type": "Feature", "properties": { "Name": "동백포레스트","address":"제주 서귀포시 남원읍 생기악로 53-38 (남원읍 신례리)","link": "https://place.map.kakao.com/317349030", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.636195,33.300310,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "볼고롱동백","address":"제주특별자치도 서귀포시 남원읍 위미리 934-1","link": "https://place.map.kakao.com/755324204", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.677383,33.275398,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "동백낭","address":"제주특별자치도 서귀포시 남원읍 태위로 275-2 (남원읍)","link": "https://place.map.kakao.com/1809453366", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.676982,33.276043,0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "동백수목원 주차장","address":"제주 서귀포시 남원읍 위미리 931-1","link": "https://place.map.kakao.com/958970850", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.678687,33.275899,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "동백수목원 주차장","address":"제주 서귀포시 남원읍 위미리 931-1","link": "https://place.map.kakao.com/958970850", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.678687,33.275899,0.0 ] } }
 ]
 }
