@@ -1,6 +1,6 @@
 { 
 "type": "FeatureCollection", 
-"name": "jeju_favorites",
+"name": "jeju_camellia",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "Name": "에코랜드테마파크","address":"제주특별자치도 제주시 조천읍 번영로 1278-169 (조천읍)","link": "https://place.map.kakao.com/21500227", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.670279,33.448339,0.0 ] } },
@@ -11,13 +11,13 @@
 { "type": "Feature", "properties": { "Name": "카멜리아힐","address":"제주특별자치도 서귀포시 안덕면 병악로 166 (안덕면)","link": "https://place.map.kakao.com/9461977", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.370009,33.289634,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "동백동산","address":"제주특별자치도 서귀포시 안덕면 광평리 산 97","link": "https://place.map.kakao.com/976337389", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.356984,33.335427,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "윈드1947카트테마파크","address":"제주특별자치도 서귀포시 토평공단로 78-27 (토평동)","link": "https://place.map.kakao.com/820826091", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.588827,33.289519,0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "제주허브동산","address":"제주특별자치도 서귀포시 표선면 돈오름로 170 (표선면)","link": "https://place.map.kakao.com/23397740", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.815186,33.330394,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "제주허브동산","address":"제주 서귀포시 표선면 돈오름로 170 (표선면 표선리)","link": "https://place.map.kakao.com/23397740", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.815182,33.330394,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "가시림","address":"제주특별자치도 서귀포시 표선면 녹산로5번길 171 (표선면)","link": "https://place.map.kakao.com/1615441814", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.751595,33.361151,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "말로","address":"제주특별자치도 제주시 조천읍 남조로 1785-12 1층 (조천읍)","link": "https://place.map.kakao.com/922717571", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.672108,33.427477,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "휴애리자연생활공원","address":"제주특별자치도 서귀포시 남원읍 신례동로 256 (남원읍)","link": "https://place.map.kakao.com/27581976", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.635410,33.309410,0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "동백포레스트","address":"제주특별자치도 서귀포시 남원읍 생기악로 53-38 (남원읍)","link": "https://place.map.kakao.com/317349030", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.636199,33.300306,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "동백포레스트","address":"제주 서귀포시 남원읍 생기악로 53-38 (남원읍 신례리)","link": "https://place.map.kakao.com/317349030", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.636195,33.300310,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "볼고롱동백","address":"제주특별자치도 서귀포시 남원읍 위미리 934-1","link": "https://place.map.kakao.com/755324204", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.677383,33.275398,0.0 ] } },
 { "type": "Feature", "properties": { "Name": "동백낭","address":"제주특별자치도 서귀포시 남원읍 태위로 275-2 (남원읍)","link": "https://place.map.kakao.com/1809453366", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.676982,33.276043,0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "동백수목원 주차장","address":"제주특별자치도 서귀포시 남원읍 위미리 931-1","link": "https://place.map.kakao.com/958970850", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.678687,33.275896,0.0 ] } }
+{ "type": "Feature", "properties": { "Name": "동백수목원 주차장","address":"제주 서귀포시 남원읍 위미리 931-1","link": "https://place.map.kakao.com/958970850", "layer": "제주 동백"},"geometry": { "type": "Point", "coordinates": [ 126.678687,33.275899,0.0 ] } },
 ]
 }
