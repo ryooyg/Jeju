@@ -1,0 +1,30 @@
+{ 
+"type": "FeatureCollection", 
+"name": "jeju_cafe",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "용소담","address":"제주 제주시 흥운길 103 1층 (용담이동)","link": "https://place.map.kakao.com/1710446302", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.513731,33.515400,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "말로","address":"제주 제주시 조천읍 남조로 1785-12 1층 (조천읍 교래리)","link": "https://place.map.kakao.com/922717571", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.672108,33.427477,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "스타벅스 더제주송당파크R점","address":"제주 제주시 구좌읍 비자림로 1191 (구좌읍 송당리)","link": "https://place.map.kakao.com/675287243", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.732049,33.435436,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "카페글렌코","address":"제주 제주시 구좌읍 비자림로 1202 (구좌읍 송당리)","link": "https://place.map.kakao.com/213125558", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.733242,33.433671,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "열두달","address":"제주 제주시 한경면 용수길 37 (한경면 용수리)","link": "https://place.map.kakao.com/830081272", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.170321,33.322383,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "카페 레이어드 제주점","address":"제주 제주시 구좌읍 동복로 85 1동 1층 (구좌읍 동복리)","link": "https://place.map.kakao.com/1300594457", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.715696,33.553603,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "나이체 Nyitse","address":"제주 제주시 인다6길 35 1층 (아라일동)","link": "https://place.map.kakao.com/1144524512", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.546812,33.475177,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "부처스인제주","address":"제주 제주시 조천읍 와선로 254 1층 (조천읍 선흘리)","link": "https://place.map.kakao.com/27609926", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.699561,33.484953,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "하도리안","address":"제주 제주시 구좌읍 해맞이해안로 1788 (구좌읍 하도리)","link": "https://place.map.kakao.com/1347834525", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.892868,33.525984,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "김녕떠오르길","address":"제주 제주시 구좌읍 김녕항3길 12-20 1,2층 (구좌읍 김녕리)","link": "https://place.map.kakao.com/725991265", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.747084,33.557836,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "5L2F(오엘이에프)","address":"제주 제주시 조천읍 와흘상길 30 (조천읍 와흘리)","link": "https://place.map.kakao.com/615740956", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.633407,33.493982,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "레이지펌프","address":"제주 제주시 애월읍 애월북서길 32 (애월읍 애월리)","link": "https://place.map.kakao.com/88307711", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.309540,33.466271,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "해지개","address":"제주 제주시 애월읍 애월북서길 52 1,2층 (애월읍 애월리)","link": "https://place.map.kakao.com/247951005", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.308992,33.464324,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "델문도 김녕점","address":"제주 제주시 구좌읍 해맞이해안로 140 (구좌읍 김녕리)","link": "https://place.map.kakao.com/178682435", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.768400,33.563410,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "애월빵공장앤카페","address":"제주 제주시 애월읍 금성5길 42-15 1층 (애월읍 금성리)","link": "https://place.map.kakao.com/788872329", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.301612,33.448278,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "말로나카페","address":"제주 제주시 한림읍 귀덕11길 28 1, 2층 (한림읍 귀덕리)","link": "https://place.map.kakao.com/398384813", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.295054,33.445810,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "비에노즈","address":"제주 제주시 한림읍 한림해안로 674 (한림읍 귀덕리)","link": "https://place.map.kakao.com/1816140460", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.284056,33.442426,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "카페 인어","address":"제주 제주시 한림읍 한림해안로 584 1층 (한림읍 귀덕리)","link": "https://place.map.kakao.com/761977318", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.276416,33.440467,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "너와의첫여행","address":"제주 제주시 애월읍 장소로 16 (애월읍 장전리)","link": "https://place.map.kakao.com/325110055", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.384538,33.450640,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "노을리카페","address":"제주 제주시 애월읍 애월해안로 654 (애월읍 구엄리)","link": "https://place.map.kakao.com/1525547515", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.372733,33.479853,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "바이러닉 에스프레소바 제주도점","address":"제주 제주시 테우해안로 96 1층 (내도동)","link": "https://place.map.kakao.com/1265114317", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.444566,33.497676,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "카페도두","address":"제주 제주시 서해안로 342 1층 (도두이동)","link": "https://place.map.kakao.com/1337328227", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.481631,33.510156,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "인바이트유","address":"제주 제주시 광평동로 45 C동 1층 (노형동)","link": "https://place.map.kakao.com/108198315", "layer": "제주 카페"},"geometry": { "type": "Point", "coordinates": [ 126.468372,33.483258,0.0 ] } }
+]
+}

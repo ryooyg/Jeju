@@ -1,0 +1,18 @@
+{ 
+"type": "FeatureCollection", 
+"name": "jeju_hangover",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "노형한빛식당","address":"제주 제주시 애월읍 유수암평화5길 88 1층 (애월읍 유수암리)","link": "https://place.map.kakao.com/27163704", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.406151,33.421054,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "산지해장국 노형직영점","address":"제주 제주시 노형9길 16-1 (노형동)","link": "https://place.map.kakao.com/716581226", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.476407,33.483277,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "산지해장국","address":"제주특별자치도 제주시 임항로 34 1층 (건입동)","link": "https://place.map.kakao.com/25430346", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.528510,33.516341,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "은희네해장국 본점","address":"제주특별자치도 제주시 고마로13길 8 (일도이동)","link": "https://place.map.kakao.com/21499653", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.540727,33.508521,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "순풍해장국 함덕점","address":"제주특별자치도 제주시 조천읍 신북로 604 1층 (조천읍)","link": "https://place.map.kakao.com/25621205", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.673980,33.539868,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "봉해장국","address":"제주특별자치도 제주시 성지로 67-1 (일도1동)","link": "https://place.map.kakao.com/18191562", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.530365,33.511645,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "모이세해장국 중앙점","address":"제주특별자치도 제주시 관덕로6길 11 (삼도이동)","link": "https://place.map.kakao.com/8992704", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.522205,33.512086,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "원조미풍해장국 본점","address":"제주특별자치도 제주시 중앙로14길 13 (삼도2동)","link": "https://place.map.kakao.com/11291795", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.522881,33.511267,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "옛못잊어감자탕","address":"제주특별자치도 제주시 서광로32길 35 (이도2동)","link": "https://place.map.kakao.com/8977947", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.529726,33.497754,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "우진해장국","address":"제주 제주시 서사로 11 1층 (삼도이동)","link": "https://place.map.kakao.com/11547525", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.519999,33.511515,0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "함덕골목","address":"제주 제주시 조천읍 조천북6길 62 1층 (조천읍 조천리)","link": "https://place.map.kakao.com/1163513107", "layer": "제주 해장국"},"geometry": { "type": "Point", "coordinates": [ 126.641157,33.539355,0.0 ] } }
+]
+}
