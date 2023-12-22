@@ -567,7 +567,7 @@ function startzptDataLayer(geojson) {
 
 jejucafe_check.addEventListener('change', function () {
     if (this.checked) {
-        var url_path = './geojson/jeju_favorites.geojson';
+        var url_path = './geojson/jeju_cafe.geojson';
         $.ajax({
             url: url_path,
             dataType: 'json',
@@ -673,7 +673,7 @@ function jejucafegetClickHandler(i) {
 
 jejurest_check.addEventListener('change', function () {
     if (this.checked) {
-        var url_path = './geojson/jeju_favorites.geojson';
+        var url_path = './geojson/jeju_rest.geojson';
         $.ajax({
             url: url_path,
             dataType: 'json',
@@ -777,7 +777,7 @@ function jejurestgetClickHandler(i) {
 
 seogwipocafe_check.addEventListener('change', function () {
     if (this.checked) {
-        var url_path = './geojson/jeju_favorites.geojson';
+        var url_path = './geojson/seogwipo_cafe.geojson';
         $.ajax({
             url: url_path,
             dataType: 'json',
@@ -882,7 +882,7 @@ function seogwipocafegetClickHandler(i) {
 
 seogwiporest_check.addEventListener('change', function () {
     if (this.checked) {
-        var url_path = './geojson/jeju_favorites.geojson';
+        var url_path = './geojson/seogwipo_rest.geojson';
         $.ajax({
             url: url_path,
             dataType: 'json',
@@ -987,7 +987,7 @@ function seogwiporestgetClickHandler(i) {
 
 jejuheajang_check.addEventListener('change', function () {
     if (this.checked) {
-        var url_path = './geojson/jeju_favorites.geojson';
+        var url_path = './geojson/jeju_hangover.geojson';
         $.ajax({
             url: url_path,
             dataType: 'json',
